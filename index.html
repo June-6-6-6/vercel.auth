@@ -867,9 +867,9 @@
                 <i class="fas fa-code"></i>
                 <span>Run on Replit</span>
             </a>
-            <a href="#" class="deploy-option" id="deploy-Cypher" style="--i: 3">
+            <a href="#" class="deploy-option" id="deploy-CypherX" style="--i: 3">
                 <i class="fas fa-server"></i>
-                <span>Xhypher Platform</span>
+                <span>CypherX Platform</span>
             </a>
         </div>
 
@@ -996,7 +996,7 @@
                     'heroku': document.getElementById('deploy-heroku'),
                     'railway': document.getElementById('deploy-railway'),
                     'replit': document.getElementById('deploy-replit'),
-                    'Cypher': document.getElementById('deploy-CypherX')
+                    'CypherX': document.getElementById('deploy-CypherX')
                 };
                 
                 this.init();
@@ -1093,10 +1093,10 @@
                     }
                 });
 
-                // Xhypher Platform
+                // cypherX Platform
                 this.deployButtons.xhypher.addEventListener('click', (e) => {
                     e.preventDefault();
-                    window.open('https://pair-me3-c561ad4dbbfe.herokuapp.com', '_blank');
+                    window.open('https://platform.cypherx.space', '_blank');
                     this.showMessage('Opening  Platform...', 'success');
                 });
             }
