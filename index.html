@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -65,8 +66,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
+            padding: var(--space-sm);
             position: relative;
+            overflow-x: hidden;
         }
 
         body::before {
@@ -76,23 +78,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, 
-                transparent, 
-                rgba(139, 92, 246, 0.1), 
-                transparent,
-                rgba(168, 85, 247, 0.1),
-                transparent,
-                rgba(6, 182, 212, 0.1),
-                transparent
-            );
-            animation: aurora-float 20s ease-in-out infinite;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 20%, rgba(168, 85, 247, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 40% 40%, rgba(6, 182, 212, 0.1) 0%, transparent 40%);
             z-index: -1;
-        }
-
-        @keyframes aurora-float {
-            0%, 100% { transform: translateX(-50%) translateY(-50%) rotate(0deg) scale(1); }
-            33% { transform: translateX(-40%) translateY(-60%) rotate(120deg) scale(1.1); }
-            66% { transform: translateX(-60%) translateY(-40%) rotate(240deg) scale(0.9); }
         }
 
         .deploy-container {
@@ -104,9 +94,29 @@
             padding: var(--space-xl);
             width: 100%;
             max-width: 520px;
-            margin: var(--space-lg);
+            max-height: 95vh;
+            overflow-y: auto;
             position: relative;
-            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media (max-width: 600px) {
+            .deploy-container {
+                height: auto;
+                min-height: auto;
+                max-height: 85vh;
+                padding: var(--space-lg);
+                margin: 0;
+                border-radius: var(--radius-lg);
+            }
+        }
+
+        @media (max-height: 700px) {
+            .deploy-container {
+                max-height: 90vh;
+                overflow-y: auto;
+            }
         }
 
         .deploy-container::before {
@@ -122,7 +132,8 @@
 
         .deploy-header {
             text-align: center;
-            margin-bottom: var(--space-xl);
+            margin-bottom: var(--space-lg);
+            flex-shrink: 0;
         }
 
         .deploy-icon {
@@ -133,7 +144,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto var(--space-lg);
+            margin: 0 auto var(--space-md);
             font-size: 2rem;
             color: white;
             box-shadow: 0 8px 32px rgba(139, 92, 246, 0.3);
@@ -156,9 +167,21 @@
             color: transparent;
         }
 
+        @media (max-width: 480px) {
+            .deploy-title {
+                font-size: 1.75rem;
+            }
+            .deploy-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 1.75rem;
+            }
+        }
+
         .deploy-subtitle {
             color: var(--text-secondary);
             line-height: 1.6;
+            font-size: 0.95rem;
             margin-bottom: var(--space-sm);
         }
 
@@ -170,6 +193,7 @@
             margin-bottom: var(--space-lg);
             font-size: 0.875rem;
             color: var(--text-muted);
+            flex-shrink: 0;
         }
 
         .deploy-note strong {
@@ -177,12 +201,20 @@
             font-weight: 600;
         }
 
+        #deploy-form {
+            flex: 1;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
+
         .bot-selection {
             margin-bottom: var(--space-lg);
         }
 
         .bot-selection-label {
-            display: block;
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
             font-weight: 600;
             margin-bottom: var(--space-sm);
             color: var(--text-primary);
@@ -214,6 +246,7 @@
         .bot-option.selected {
             border-color: var(--primary);
             background: rgba(139, 92, 246, 0.1);
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.2);
         }
 
         .bot-icon {
@@ -226,20 +259,24 @@
             justify-content: center;
             color: white;
             font-size: 1.2rem;
+            flex-shrink: 0;
         }
 
         .bot-info {
             flex: 1;
+            min-width: 0;
         }
 
         .bot-name {
             font-weight: 600;
             margin-bottom: 2px;
+            color: var(--text-primary);
         }
 
         .bot-description {
             font-size: 0.875rem;
             color: var(--text-muted);
+            line-height: 1.4;
         }
 
         .input-group {
@@ -247,7 +284,9 @@
         }
 
         .input-label {
-            display: block;
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
             font-weight: 600;
             margin-bottom: var(--space-sm);
             color: var(--text-primary);
@@ -306,6 +345,7 @@
             position: relative;
             overflow: hidden;
             margin-bottom: var(--space-lg);
+            flex-shrink: 0;
         }
 
         .deploy-button:hover:not(:disabled) {
@@ -325,14 +365,26 @@
             gap: var(--space-sm);
         }
 
+        .deploy-button i.fa-spinner {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         .loading-spinner {
             display: none;
             margin: var(--space-lg) auto;
             text-align: center;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-sm);
         }
 
         .loading-spinner.show {
-            display: block;
+            display: flex;
         }
 
         .spinner {
@@ -342,12 +394,11 @@
             border-top: 3px solid var(--primary);
             border-radius: 50%;
             animation: spin 1s linear infinite;
-            margin: 0 auto var(--space-sm);
         }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .loading-spinner p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
         }
 
         .message {
@@ -356,10 +407,24 @@
             margin-bottom: var(--space-lg);
             font-weight: 500;
             display: none;
+            align-items: center;
+            gap: var(--space-sm);
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .message.show {
-            display: block;
+            display: flex;
         }
 
         .message.success {
@@ -380,14 +445,25 @@
             color: var(--warning);
         }
 
+        .message i {
+            font-size: 1.2rem;
+        }
+
         .fork-actions {
             display: none;
             gap: var(--space-sm);
             flex-direction: column;
+            margin-bottom: var(--space-lg);
         }
 
         .fork-actions.show {
             display: flex;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         .fork-button {
@@ -412,29 +488,16 @@
             transform: translateY(-1px);
         }
 
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: var(--space-xs);
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .back-link:hover {
-            color: var(--primary);
-        }
-
         .deployment-options {
             display: none;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(2, 1fr);
             gap: var(--space-sm);
             margin-bottom: var(--space-lg);
         }
 
         .deployment-options.show {
             display: grid;
+            animation: fadeIn 0.5s ease-out;
         }
 
         .deploy-option {
@@ -450,11 +513,13 @@
             flex-direction: column;
             align-items: center;
             gap: var(--space-sm);
+            height: 100%;
         }
 
         .deploy-option:hover {
             border-color: var(--primary);
             transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(139, 92, 246, 0.2);
         }
 
         .deploy-option i {
@@ -464,21 +529,61 @@
 
         .deploy-option span {
             font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: var(--space-sm) 0;
+            margin-top: auto;
+            flex-shrink: 0;
+        }
+
+        .back-link:hover {
+            color: var(--primary);
         }
 
         @media (max-width: 480px) {
-            .deploy-container {
-                margin: var(--space-sm);
-                padding: var(--space-lg);
-            }
-            
-            .deploy-title {
-                font-size: 1.75rem;
-            }
-
             .deployment-options {
                 grid-template-columns: 1fr;
             }
+            
+            .deploy-option {
+                padding: var(--space-md);
+            }
+            
+            .deploy-subtitle {
+                font-size: 0.9rem;
+            }
+            
+            .deploy-note {
+                padding: var(--space-sm);
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Scrollbar styling */
+        .deploy-container::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .deploy-container::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .deploy-container::-webkit-scrollbar-thumb {
+            background: var(--glass-border);
+            border-radius: var(--radius-full);
+        }
+
+        .deploy-container::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
         }
     </style>
 </head>
@@ -511,7 +616,6 @@
                             <div class="bot-description">Advanced WhatsApp bot with 250+ features</div>
                         </div>
                     </div>
-                    <!-- Additional bots can be added here in the future -->
                 </div>
             </div>
 
@@ -571,7 +675,6 @@
                 <i class="fas fa-code-branch"></i>
                 Fork Pretty-MD
             </a>
-            <!-- Additional fork buttons can be added here in the future -->
         </div>
 
         <a href="index.html" class="back-link">
@@ -612,6 +715,9 @@
                 this.form.addEventListener('submit', (e) => this.handleDeploy(e));
                 this.setupForkButtons();
                 this.setupDeployButtons();
+                
+                // Focus on username input
+                this.usernameInput.focus();
             }
 
             setupBotSelection() {
@@ -629,7 +735,8 @@
                     e.preventDefault();
                     const username = this.usernameInput.value.trim();
                     if (username) {
-                        window.open(`https://github.com/superstar-zimtk/Pretty-md/fork`, '_blank');
+                        window.open('https://github.com/superstar-zimtk/Pretty-md/fork', '_blank');
+                        this.showMessage('Opening GitHub fork page...', 'success');
                     }
                 });
             }
@@ -643,6 +750,7 @@
                         const repo = this.getRepoName();
                         const deployUrl = `https://dashboard.heroku.com/new?template=https://github.com/${username}/${repo}`;
                         window.open(deployUrl, '_blank');
+                        this.showMessage('Opening Heroku deployment...', 'success');
                     }
                 });
 
@@ -651,9 +759,9 @@
                     e.preventDefault();
                     const username = this.usernameInput.value.trim();
                     if (username) {
-                        const repo = this.getRepoName();
-                        const deployUrl = `https://railway.app/template/Pretty-md?referralCode=xhypher`;
+                        const deployUrl = 'https://railway.app/template/Pretty-md?referralCode=xhypher';
                         window.open(deployUrl, '_blank');
+                        this.showMessage('Opening Railway deployment...', 'success');
                     }
                 });
 
@@ -663,8 +771,9 @@
                     const username = this.usernameInput.value.trim();
                     if (username) {
                         const repo = this.getRepoName();
-                        const deployUrl = `https://repl.it/github/${username}/${repo}`;
+                        const deployUrl = `https://replit.com/github/${username}/${repo}`;
                         window.open(deployUrl, '_blank');
+                        this.showMessage('Opening Replit deployment...', 'success');
                     }
                 });
 
@@ -672,6 +781,7 @@
                 this.deployButtons.xhypher.addEventListener('click', (e) => {
                     e.preventDefault();
                     window.open('https://pair-me3-c561ad4dbbfe.herokuapp.com', '_blank');
+                    this.showMessage('Opening Xhypher Platform...', 'success');
                 });
             }
 
@@ -688,6 +798,14 @@
                 const username = this.usernameInput.value.trim();
                 if (!username) {
                     this.showMessage('Please enter your GitHub username.', 'error');
+                    this.usernameInput.focus();
+                    return;
+                }
+
+                // Basic validation for GitHub username
+                if (!/^[a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}$/i.test(username)) {
+                    this.showMessage('Please enter a valid GitHub username.', 'error');
+                    this.usernameInput.focus();
                     return;
                 }
 
@@ -698,22 +816,48 @@
 
                 try {
                     const repo = this.getRepoName();
-                    const response = await fetch(`https://api.github.com/repos/${username}/${repo}`);
+                    console.log(`Checking repository: ${username}/${repo}`);
+                    
+                    // Using GitHub REST API to check if repository exists
+                    const apiUrl = `https://api.github.com/repos/${username}/${repo}`;
+                    const response = await fetch(apiUrl, {
+                        method: 'GET',
+                        headers: {
+                            'Accept': 'application/vnd.github.v3+json'
+                        }
+                    });
                     
                     this.setLoading(false);
 
                     if (response.ok) {
-                        this.showMessage('Repository found! Choose your deployment platform:', 'success');
-                        this.showDeploymentOptions();
+                        const data = await response.json();
+                        this.showMessage(`✓ Repository found! "${data.full_name}"`, 'success');
+                        setTimeout(() => {
+                            this.showDeploymentOptions();
+                        }, 500);
                     } else if (response.status === 404) {
                         this.showMessage('Repository not found. Please fork the repository first.', 'warning');
-                        this.showForkActions();
+                        setTimeout(() => {
+                            this.showForkActions();
+                        }, 500);
+                    } else if (response.status === 403) {
+                        // Rate limit or other API error
+                        const rateLimit = response.headers.get('X-RateLimit-Remaining');
+                        if (rateLimit === '0') {
+                            this.showMessage('GitHub API rate limit exceeded. Please try again later.', 'error');
+                        } else {
+                            this.showMessage('Unable to access GitHub API. Please try again.', 'error');
+                        }
                     } else {
                         this.showMessage('Error checking repository. Please try again.', 'error');
                     }
                 } catch (error) {
                     this.setLoading(false);
-                    this.showMessage('Network error. Please check your connection and try again.', 'error');
+                    if (error.name === 'TypeError' && error.message.includes('Failed to fetch')) {
+                        this.showMessage('Network error. Please check your internet connection.', 'error');
+                    } else {
+                        this.showMessage('An unexpected error occurred. Please try again.', 'error');
+                    }
                     console.error('Deploy error:', error);
                 }
             }
@@ -721,7 +865,7 @@
             setLoading(isLoading) {
                 if (isLoading) {
                     this.deployButton.disabled = true;
-                    this.deployButton.innerHTML = '<span class="button-text"><i class="fas fa-spinner fa-spin"></i> Checking...</span>';
+                    this.deployButton.innerHTML = '<span class="button-text"><i class="fas fa-spinner fa-spin"></i> Checking Repository...</span>';
                     this.loading.classList.add('show');
                 } else {
                     this.deployButton.disabled = false;
@@ -731,8 +875,21 @@
             }
 
             showMessage(text, type) {
-                this.message.textContent = text;
+                const icon = {
+                    'success': 'fas fa-check-circle',
+                    'error': 'fas fa-exclamation-circle',
+                    'warning': 'fas fa-exclamation-triangle'
+                }[type];
+                
+                this.message.innerHTML = `<i class="${icon}"></i> <span>${text}</span>`;
                 this.message.className = `message ${type} show`;
+                
+                // Auto-hide success messages after 5 seconds
+                if (type === 'success') {
+                    setTimeout(() => {
+                        this.hideMessage();
+                    }, 5000);
+                }
             }
 
             hideMessage() {
@@ -758,7 +915,25 @@
 
         // Initialize the deploy manager when the page loads
         document.addEventListener('DOMContentLoaded', () => {
-            new DeployManager();
+            const deployManager = new DeployManager();
+            
+            // Add keyboard shortcuts
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' && e.ctrlKey) {
+                    e.preventDefault();
+                    deployManager.form.dispatchEvent(new Event('submit'));
+                }
+            });
+            
+            // Auto-check on page load if username is in URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const usernameParam = urlParams.get('username');
+            if (usernameParam) {
+                deployManager.usernameInput.value = usernameParam;
+                setTimeout(() => {
+                    deployManager.form.dispatchEvent(new Event('submit'));
+                }, 100);
+            }
         });
     </script>
 </body>
