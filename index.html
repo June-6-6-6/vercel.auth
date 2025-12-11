@@ -115,29 +115,21 @@
             background: var(--glass-bg);
             backdrop-filter: blur(40px) saturate(180%);
             border: 1px solid var(--glass-border);
-            border-radius: var(--radius-xl);
+            border-radius: var(--radius-xl) 0 0 var(--radius-xl); /* Left corners curved */
             box-shadow: 
                 var(--glass-shadow),
                 inset 0 1px 0 rgba(255, 255, 255, 0.1),
                 0 0 0 1px rgba(0, 0, 0, 0.2);
             padding: var(--space-xl);
             width: 100%;
-            max-width: 450px; /* Increased width slightly */
-            max-height: 550px; /* Increased height for better content display */
-            min-height: 500px; /* Minimum height */
+            max-width: 450px;
+            max-height: 550px;
+            min-height: 500px;
             overflow-y: auto;
             position: relative;
             display: flex;
             flex-direction: column;
             animation: containerFloat 6s ease-in-out infinite;
-        }
-
-        @media (min-width: 768px) {
-            .deploy-container {
-                max-width: 500px; /* Wider on desktop */
-                max-height: 600px; /* Taller on desktop */
-                min-height: 550px;
-            }
         }
 
         @keyframes containerFloat {
@@ -160,7 +152,7 @@
             right: 0;
             height: 4px;
             background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent), var(--neon));
-            border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+            border-radius: var(--radius-xl) 0 0 0; /* Only top-left curved */
             animation: shimmer 3s infinite;
         }
 
@@ -176,15 +168,15 @@
         }
 
         .deploy-icon {
-            width: 70px; /* Slightly larger */
+            width: 70px;
             height: 70px;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: var(--radius-md);
+            border-radius: var(--radius-md) 0 0 var(--radius-md); /* Left corners curved */
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto var(--space-md);
-            font-size: 1.75rem; /* Larger icon */
+            font-size: 1.75rem;
             color: white;
             box-shadow: 
                 0 8px 32px rgba(168, 85, 247, 0.4),
@@ -214,7 +206,7 @@
 
         .deploy-title {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.75rem; /* Larger title */
+            font-size: 1.75rem;
             font-weight: 800;
             margin-bottom: var(--space-xs);
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
@@ -226,7 +218,7 @@
 
         .deploy-subtitle {
             color: var(--text-secondary);
-            font-size: 0.9rem; /* Slightly larger */
+            font-size: 0.9rem;
             line-height: 1.5;
             opacity: 0.9;
         }
@@ -234,10 +226,10 @@
         .deploy-note {
             background: rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: var(--radius-sm);
-            padding: var(--space-md); /* More padding */
+            border-radius: var(--radius-sm) 0 0 var(--radius-sm); /* Left corners curved */
+            padding: var(--space-md);
             margin-bottom: var(--space-lg);
-            font-size: 0.85rem; /* Larger font */
+            font-size: 0.85rem;
             color: var(--text-muted);
             flex-shrink: 0;
             backdrop-filter: blur(10px);
@@ -285,7 +277,7 @@
             font-weight: 600;
             margin-bottom: var(--space-sm);
             color: var(--text-primary);
-            font-size: 1rem; /* Larger label */
+            font-size: 1rem;
         }
 
         .bot-options {
@@ -297,7 +289,7 @@
         .bot-option {
             background: rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: var(--radius-md);
+            border-radius: var(--radius-md) 0 0 var(--radius-md); /* Left corners curved */
             padding: var(--space-md);
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -310,14 +302,21 @@
         }
 
         @keyframes optionFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-3px); }
+            0%, 100% { 
+                transform: translateY(0);
+                border-radius: var(--radius-md) 0 0 var(--radius-md); /* Left corners curved */
+            }
+            50% { 
+                transform: translateY(-3px);
+                border-radius: 0 var(--radius-md) var(--radius-md) 0; /* Right corners curved */
+            }
         }
 
         .bot-option:hover {
             border-color: var(--primary);
             transform: translateY(-4px) scale(1.02);
             box-shadow: 0 12px 24px rgba(168, 85, 247, 0.3);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0; /* Right corners curved on hover */
         }
 
         .bot-option.selected {
@@ -326,18 +325,19 @@
             box-shadow: 
                 0 8px 32px rgba(168, 85, 247, 0.3),
                 inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0; /* Right corners curved when selected */
         }
 
         .bot-icon {
-            width: 40px; /* Larger icon */
+            width: 40px;
             height: 40px;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: var(--radius-sm);
+            border-radius: var(--radius-sm) 0 0 var(--radius-sm); /* Left corners curved */
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 1.2rem; /* Larger icon */
+            font-size: 1.2rem;
             flex-shrink: 0;
             box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);
         }
@@ -351,11 +351,11 @@
             font-weight: 700;
             margin-bottom: 4px;
             color: var(--text-primary);
-            font-size: 1rem; /* Larger name */
+            font-size: 1rem;
         }
 
         .bot-description {
-            font-size: 0.85rem; /* Larger description */
+            font-size: 0.85rem;
             color: var(--text-muted);
             line-height: 1.4;
         }
@@ -371,7 +371,7 @@
             font-weight: 600;
             margin-bottom: var(--space-sm);
             color: var(--text-primary);
-            font-size: 1rem; /* Larger label */
+            font-size: 1rem;
         }
 
         .input-container {
@@ -380,13 +380,13 @@
 
         .input-field {
             width: 100%;
-            padding: calc(var(--space-md) * 1.2); /* More padding */
+            padding: calc(var(--space-md) * 1.2);
             background: rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: var(--radius-md);
+            border-radius: var(--radius-md) 0 0 var(--radius-md); /* Left corners curved */
             color: var(--text-primary);
-            font-size: 1rem; /* Larger font */
+            font-size: 1rem;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             outline: none;
         }
@@ -397,6 +397,7 @@
                 0 0 0 3px rgba(168, 85, 247, 0.2),
                 0 8px 32px rgba(168, 85, 247, 0.3);
             transform: translateY(-2px);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0; /* Right corners curved on focus */
         }
 
         .input-field::placeholder {
@@ -410,22 +411,22 @@
             transform: translateY(-50%);
             color: var(--text-muted);
             pointer-events: none;
-            font-size: 1.1rem; /* Larger icon */
+            font-size: 1.1rem;
         }
 
         .input-field.with-icon {
-            padding-left: 3.5rem; /* More space for icon */
+            padding-left: 3.5rem;
         }
 
-        /* Opposite curved corners button */
+        /* Deploy button with left corners curved */
         .deploy-button {
             width: 100%;
-            padding: calc(var(--space-md) * 1.2); /* More padding */
+            padding: calc(var(--space-md) * 1.2);
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             border: none;
-            border-radius: 24px 6px 24px 6px; /* Slightly more pronounced corners */
-            font-size: 1rem; /* Larger font */
+            border-radius: var(--radius-lg) 0 0 var(--radius-lg); /* Left corners curved */
+            font-size: 1rem;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -444,11 +445,11 @@
         @keyframes buttonFloat {
             0%, 100% { 
                 transform: translateY(0) scale(1);
-                border-radius: 24px 6px 24px 6px;
+                border-radius: var(--radius-lg) 0 0 var(--radius-lg); /* Left corners curved */
             }
             50% { 
                 transform: translateY(-4px) scale(1.02);
-                border-radius: 6px 24px 6px 24px;
+                border-radius: 0 var(--radius-lg) var(--radius-lg) 0; /* Right corners curved */
             }
         }
 
@@ -457,7 +458,7 @@
             box-shadow: 
                 0 16px 48px rgba(168, 85, 247, 0.6),
                 inset 0 1px 0 rgba(255, 255, 255, 0.3);
-            border-radius: 6px 24px 6px 24px;
+            border-radius: 0 var(--radius-lg) var(--radius-lg) 0; /* Right corners curved on hover */
         }
 
         .deploy-button:disabled {
@@ -476,7 +477,7 @@
         }
 
         .deploy-button i {
-            font-size: 1.1rem; /* Larger icon */
+            font-size: 1.1rem;
         }
 
         .deploy-button i.fa-spinner {
@@ -502,7 +503,7 @@
         }
 
         .spinner {
-            width: 40px; /* Larger spinner */
+            width: 40px;
             height: 40px;
             border: 4px solid var(--glass-border);
             border-top: 4px solid var(--primary);
@@ -513,12 +514,12 @@
 
         .loading-spinner p {
             color: var(--text-secondary);
-            font-size: 0.9rem; /* Larger text */
+            font-size: 0.9rem;
         }
 
         .message {
             padding: var(--space-md);
-            border-radius: var(--radius-md);
+            border-radius: var(--radius-md) 0 0 var(--radius-md); /* Left corners curved */
             margin-bottom: var(--space-lg);
             font-weight: 500;
             display: none;
@@ -526,8 +527,8 @@
             gap: var(--space-sm);
             animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             backdrop-filter: blur(10px);
-            font-size: 0.9rem; /* Larger text */
-            min-height: 50px; /* Minimum height for consistency */
+            font-size: 0.9rem;
+            min-height: 50px;
         }
 
         @keyframes slideDown {
@@ -564,7 +565,7 @@
         }
 
         .message i {
-            font-size: 1.2rem; /* Larger icon */
+            font-size: 1.2rem;
         }
 
         .fork-actions {
@@ -590,12 +591,12 @@
             }
         }
 
-        /* Opposite curved corners for fork button */
+        /* Fork button with left corners curved */
         .fork-button {
             padding: calc(var(--space-sm) * 1.2) var(--space-md);
             background: rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 18px 4px 18px 4px;
+            border-radius: var(--radius-md) 0 0 var(--radius-md); /* Left corners curved */
             color: var(--text-primary);
             text-decoration: none;
             text-align: center;
@@ -605,7 +606,7 @@
             align-items: center;
             justify-content: center;
             gap: var(--space-xs);
-            font-size: 0.9rem; /* Larger font */
+            font-size: 0.9rem;
             backdrop-filter: blur(10px);
             animation: forkFloat 5s ease-in-out infinite;
         }
@@ -613,11 +614,11 @@
         @keyframes forkFloat {
             0%, 100% { 
                 transform: translateY(0);
-                border-radius: 18px 4px 18px 4px;
+                border-radius: var(--radius-md) 0 0 var(--radius-md); /* Left corners curved */
             }
             50% { 
                 transform: translateY(-2px);
-                border-radius: 4px 18px 4px 18px;
+                border-radius: 0 var(--radius-md) var(--radius-md) 0; /* Right corners curved */
             }
         }
 
@@ -626,7 +627,7 @@
             color: white;
             transform: translateY(-4px);
             box-shadow: 0 8px 24px rgba(168, 85, 247, 0.4);
-            border-radius: 4px 18px 4px 18px;
+            border-radius: 0 var(--radius-md) var(--radius-md) 0; /* Right corners curved on hover */
         }
 
         .deployment-options {
@@ -641,11 +642,11 @@
             animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Opposite curved corners for deploy options */
+        /* Deploy option with left corners curved */
         .deploy-option {
             background: rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 14px 5px 14px 5px;
+            border-radius: var(--radius-sm) 0 0 var(--radius-sm); /* Left corners curved */
             padding: var(--space-md);
             text-align: center;
             text-decoration: none;
@@ -659,17 +660,17 @@
             backdrop-filter: blur(10px);
             animation: deployOptionFloat 6s ease-in-out infinite;
             animation-delay: calc(var(--i) * 0.2s);
-            min-height: 100px; /* Minimum height for options */
+            min-height: 100px;
         }
 
         @keyframes deployOptionFloat {
             0%, 100% { 
                 transform: translateY(0);
-                border-radius: 14px 5px 14px 5px;
+                border-radius: var(--radius-sm) 0 0 var(--radius-sm); /* Left corners curved */
             }
             50% { 
                 transform: translateY(-3px);
-                border-radius: 5px 14px 5px 14px;
+                border-radius: 0 var(--radius-sm) var(--radius-sm) 0; /* Right corners curved */
             }
         }
 
@@ -678,11 +679,11 @@
             border-color: var(--primary);
             transform: translateY(-6px) scale(1.05);
             box-shadow: 0 12px 32px rgba(168, 85, 247, 0.4);
-            border-radius: 5px 14px 5px 14px;
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0; /* Right corners curved on hover */
         }
 
         .deploy-option i {
-            font-size: 1.4rem; /* Larger icon */
+            font-size: 1.4rem;
             color: var(--primary);
             text-shadow: 0 0 20px currentColor;
         }
@@ -693,7 +694,7 @@
 
         .deploy-option span {
             font-weight: 700;
-            font-size: 0.9rem; /* Larger text */
+            font-size: 0.9rem;
         }
 
         .back-link {
@@ -704,10 +705,10 @@
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s ease;
-            padding: var(--space-md) 0; /* More padding */
+            padding: var(--space-md) 0;
             margin-top: auto;
             flex-shrink: 0;
-            font-size: 0.9rem; /* Larger font */
+            font-size: 0.9rem;
             opacity: 0.8;
         }
 
@@ -810,7 +811,7 @@
                     <i class="fas fa-robot"></i> Select Bot
                 </label>
                 <div class="bot-options">
-                    <div class="bot-option selected" data-bot="pretty-md" style="--i: 0">
+                    <div class="bot-option selected" data-bot="JUNE-X" style="--i: 0">
                         <div class="bot-icon">
                             <i class="fas fa-bolt"></i>
                         </div>
@@ -867,7 +868,7 @@
                 <i class="fas fa-code"></i>
                 <span>Run on Replit</span>
             </a>
-            <a href="#" class="deploy-option" id="deploy-CypherX" style="--i: 3">
+            <a href="#" class="deploy-option" id="deploy-cypherx" style="--i: 3">
                 <i class="fas fa-server"></i>
                 <span>CypherX Platform</span>
             </a>
@@ -892,7 +893,7 @@
         particlesJS("particles-js", {
             particles: {
                 number: {
-                    value: 50, /* More particles */
+                    value: 50,
                     density: {
                         enable: true,
                         value_area: 800
@@ -919,7 +920,7 @@
                     }
                 },
                 size: {
-                    value: 4, /* Slightly larger particles */
+                    value: 4,
                     random: true,
                     anim: {
                         enable: true,
@@ -932,12 +933,12 @@
                     enable: true,
                     distance: 150,
                     color: "#A855F7",
-                    opacity: 0.15, /* Slightly more visible */
+                    opacity: 0.15,
                     width: 1
                 },
                 move: {
                     enable: true,
-                    speed: 1.2, /* Slightly faster */
+                    speed: 1.2,
                     direction: "none",
                     random: true,
                     straight: false,
@@ -965,7 +966,7 @@
                 },
                 modes: {
                     repulse: {
-                        distance: 120, /* Larger repulse distance */
+                        distance: 120,
                         duration: 0.4
                     },
                     push: {
@@ -989,14 +990,14 @@
                 
                 this.botOptions = document.querySelectorAll('.bot-option');
                 this.forkButtons = {
-                    'pretty': document.getElementById('fork-JUNE')
+                    'JUNE-X': document.getElementById('fork-JUNE')
                 };
                 
                 this.deployButtons = {
                     'heroku': document.getElementById('deploy-heroku'),
                     'railway': document.getElementById('deploy-railway'),
                     'replit': document.getElementById('deploy-replit'),
-                    'CypherX': document.getElementById('deploy-CypherX')
+                    'cypherx': document.getElementById('deploy-cypherx')
                 };
                 
                 this.init();
@@ -1054,7 +1055,7 @@
             }
 
             setupForkButtons() {
-                this.forkButtons.pretty.addEventListener('click', (e) => {
+                this.forkButtons['JUNE-X'].addEventListener('click', (e) => {
                     e.preventDefault();
                     window.open('https://github.com/vinpink2/JUNE-X/fork', '_blank');
                     this.showMessage('Opening GitHub fork page...', 'success');
@@ -1093,11 +1094,11 @@
                     }
                 });
 
-                // cypherX Platform
-                this.deployButtons.xhypher.addEventListener('click', (e) => {
+                // CypherX Platform
+                this.deployButtons.cypherx.addEventListener('click', (e) => {
                     e.preventDefault();
                     window.open('https://platform.cypherx.space/login', '_blank');
-                    this.showMessage('Opening  Platform...', 'success');
+                    this.showMessage('Opening CypherX Platform...', 'success');
                 });
             }
 
