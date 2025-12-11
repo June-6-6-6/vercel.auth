@@ -69,7 +69,7 @@
             justify-content: center;
             padding: var(--space-sm);
             position: relative;
-            overflow: hidden;
+            overflow-x: hidden;
         }
 
         /* Particle Background */
@@ -122,13 +122,22 @@
                 0 0 0 1px rgba(0, 0, 0, 0.2);
             padding: var(--space-xl);
             width: 100%;
-            max-width: 400px;
-            max-height: 400px;
-            overflow: hidden;
+            max-width: 450px; /* Increased width slightly */
+            max-height: 550px; /* Increased height for better content display */
+            min-height: 500px; /* Minimum height */
+            overflow-y: auto;
             position: relative;
             display: flex;
             flex-direction: column;
             animation: containerFloat 6s ease-in-out infinite;
+        }
+
+        @media (min-width: 768px) {
+            .deploy-container {
+                max-width: 500px; /* Wider on desktop */
+                max-height: 600px; /* Taller on desktop */
+                min-height: 550px;
+            }
         }
 
         @keyframes containerFloat {
@@ -167,15 +176,15 @@
         }
 
         .deploy-icon {
-            width: 60px;
-            height: 60px;
+            width: 70px; /* Slightly larger */
+            height: 70px;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             border-radius: var(--radius-md);
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto var(--space-md);
-            font-size: 1.5rem;
+            font-size: 1.75rem; /* Larger icon */
             color: white;
             box-shadow: 
                 0 8px 32px rgba(168, 85, 247, 0.4),
@@ -205,7 +214,7 @@
 
         .deploy-title {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.5rem;
+            font-size: 1.75rem; /* Larger title */
             font-weight: 800;
             margin-bottom: var(--space-xs);
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
@@ -217,8 +226,8 @@
 
         .deploy-subtitle {
             color: var(--text-secondary);
-            font-size: 0.8rem;
-            line-height: 1.4;
+            font-size: 0.9rem; /* Slightly larger */
+            line-height: 1.5;
             opacity: 0.9;
         }
 
@@ -226,12 +235,13 @@
             background: rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: var(--radius-sm);
-            padding: var(--space-sm);
+            padding: var(--space-md); /* More padding */
             margin-bottom: var(--space-lg);
-            font-size: 0.75rem;
+            font-size: 0.85rem; /* Larger font */
             color: var(--text-muted);
             flex-shrink: 0;
             backdrop-filter: blur(10px);
+            line-height: 1.5;
         }
 
         .deploy-note strong {
@@ -244,18 +254,22 @@
             flex: 1;
             overflow-y: auto;
             padding-right: 4px;
+            margin-bottom: var(--space-sm);
         }
 
         /* Scrollbar styling */
-        #deploy-form::-webkit-scrollbar {
-            width: 4px;
+        #deploy-form::-webkit-scrollbar,
+        .deploy-container::-webkit-scrollbar {
+            width: 6px;
         }
 
-        #deploy-form::-webkit-scrollbar-track {
+        #deploy-form::-webkit-scrollbar-track,
+        .deploy-container::-webkit-scrollbar-track {
             background: transparent;
         }
 
-        #deploy-form::-webkit-scrollbar-thumb {
+        #deploy-form::-webkit-scrollbar-thumb,
+        .deploy-container::-webkit-scrollbar-thumb {
             background: var(--primary);
             border-radius: var(--radius-full);
         }
@@ -271,7 +285,7 @@
             font-weight: 600;
             margin-bottom: var(--space-sm);
             color: var(--text-primary);
-            font-size: 0.9rem;
+            font-size: 1rem; /* Larger label */
         }
 
         .bot-options {
@@ -315,15 +329,15 @@
         }
 
         .bot-icon {
-            width: 32px;
-            height: 32px;
+            width: 40px; /* Larger icon */
+            height: 40px;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             border-radius: var(--radius-sm);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 1rem;
+            font-size: 1.2rem; /* Larger icon */
             flex-shrink: 0;
             box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);
         }
@@ -335,15 +349,15 @@
 
         .bot-name {
             font-weight: 700;
-            margin-bottom: 2px;
+            margin-bottom: 4px;
             color: var(--text-primary);
-            font-size: 0.9rem;
+            font-size: 1rem; /* Larger name */
         }
 
         .bot-description {
-            font-size: 0.75rem;
+            font-size: 0.85rem; /* Larger description */
             color: var(--text-muted);
-            line-height: 1.3;
+            line-height: 1.4;
         }
 
         .input-group {
@@ -357,7 +371,7 @@
             font-weight: 600;
             margin-bottom: var(--space-sm);
             color: var(--text-primary);
-            font-size: 0.9rem;
+            font-size: 1rem; /* Larger label */
         }
 
         .input-container {
@@ -366,13 +380,13 @@
 
         .input-field {
             width: 100%;
-            padding: var(--space-md);
+            padding: calc(var(--space-md) * 1.2); /* More padding */
             background: rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: var(--radius-md);
             color: var(--text-primary);
-            font-size: 0.9rem;
+            font-size: 1rem; /* Larger font */
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             outline: none;
         }
@@ -391,26 +405,27 @@
 
         .input-icon {
             position: absolute;
-            left: var(--space-md);
+            left: calc(var(--space-md) * 1.2);
             top: 50%;
             transform: translateY(-50%);
             color: var(--text-muted);
             pointer-events: none;
+            font-size: 1.1rem; /* Larger icon */
         }
 
         .input-field.with-icon {
-            padding-left: 2.5rem;
+            padding-left: 3.5rem; /* More space for icon */
         }
 
         /* Opposite curved corners button */
         .deploy-button {
             width: 100%;
-            padding: var(--space-md);
+            padding: calc(var(--space-md) * 1.2); /* More padding */
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             border: none;
-            border-radius: 20px 5px 20px 5px; /* Opposite curved corners */
-            font-size: 0.9rem;
+            border-radius: 24px 6px 24px 6px; /* Slightly more pronounced corners */
+            font-size: 1rem; /* Larger font */
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -429,11 +444,11 @@
         @keyframes buttonFloat {
             0%, 100% { 
                 transform: translateY(0) scale(1);
-                border-radius: 20px 5px 20px 5px;
+                border-radius: 24px 6px 24px 6px;
             }
             50% { 
                 transform: translateY(-4px) scale(1.02);
-                border-radius: 5px 20px 5px 20px;
+                border-radius: 6px 24px 6px 24px;
             }
         }
 
@@ -442,7 +457,7 @@
             box-shadow: 
                 0 16px 48px rgba(168, 85, 247, 0.6),
                 inset 0 1px 0 rgba(255, 255, 255, 0.3);
-            border-radius: 5px 20px 5px 20px;
+            border-radius: 6px 24px 6px 24px;
         }
 
         .deploy-button:disabled {
@@ -458,6 +473,10 @@
             gap: var(--space-sm);
             position: relative;
             z-index: 2;
+        }
+
+        .deploy-button i {
+            font-size: 1.1rem; /* Larger icon */
         }
 
         .deploy-button i.fa-spinner {
@@ -483,10 +502,10 @@
         }
 
         .spinner {
-            width: 32px;
-            height: 32px;
-            border: 3px solid var(--glass-border);
-            border-top: 3px solid var(--primary);
+            width: 40px; /* Larger spinner */
+            height: 40px;
+            border: 4px solid var(--glass-border);
+            border-top: 4px solid var(--primary);
             border-radius: 50%;
             animation: spin 1s linear infinite;
             box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
@@ -494,7 +513,7 @@
 
         .loading-spinner p {
             color: var(--text-secondary);
-            font-size: 0.8rem;
+            font-size: 0.9rem; /* Larger text */
         }
 
         .message {
@@ -507,7 +526,8 @@
             gap: var(--space-sm);
             animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             backdrop-filter: blur(10px);
-            font-size: 0.85rem;
+            font-size: 0.9rem; /* Larger text */
+            min-height: 50px; /* Minimum height for consistency */
         }
 
         @keyframes slideDown {
@@ -544,7 +564,7 @@
         }
 
         .message i {
-            font-size: 1rem;
+            font-size: 1.2rem; /* Larger icon */
         }
 
         .fork-actions {
@@ -572,10 +592,10 @@
 
         /* Opposite curved corners for fork button */
         .fork-button {
-            padding: var(--space-sm) var(--space-md);
+            padding: calc(var(--space-sm) * 1.2) var(--space-md);
             background: rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px 3px 15px 3px;
+            border-radius: 18px 4px 18px 4px;
             color: var(--text-primary);
             text-decoration: none;
             text-align: center;
@@ -585,7 +605,7 @@
             align-items: center;
             justify-content: center;
             gap: var(--space-xs);
-            font-size: 0.85rem;
+            font-size: 0.9rem; /* Larger font */
             backdrop-filter: blur(10px);
             animation: forkFloat 5s ease-in-out infinite;
         }
@@ -593,11 +613,11 @@
         @keyframes forkFloat {
             0%, 100% { 
                 transform: translateY(0);
-                border-radius: 15px 3px 15px 3px;
+                border-radius: 18px 4px 18px 4px;
             }
             50% { 
                 transform: translateY(-2px);
-                border-radius: 3px 15px 3px 15px;
+                border-radius: 4px 18px 4px 18px;
             }
         }
 
@@ -606,7 +626,7 @@
             color: white;
             transform: translateY(-4px);
             box-shadow: 0 8px 24px rgba(168, 85, 247, 0.4);
-            border-radius: 3px 15px 3px 15px;
+            border-radius: 4px 18px 4px 18px;
         }
 
         .deployment-options {
@@ -625,7 +645,7 @@
         .deploy-option {
             background: rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px 4px 12px 4px;
+            border-radius: 14px 5px 14px 5px;
             padding: var(--space-md);
             text-align: center;
             text-decoration: none;
@@ -639,16 +659,17 @@
             backdrop-filter: blur(10px);
             animation: deployOptionFloat 6s ease-in-out infinite;
             animation-delay: calc(var(--i) * 0.2s);
+            min-height: 100px; /* Minimum height for options */
         }
 
         @keyframes deployOptionFloat {
             0%, 100% { 
                 transform: translateY(0);
-                border-radius: 12px 4px 12px 4px;
+                border-radius: 14px 5px 14px 5px;
             }
             50% { 
                 transform: translateY(-3px);
-                border-radius: 4px 12px 4px 12px;
+                border-radius: 5px 14px 5px 14px;
             }
         }
 
@@ -657,11 +678,11 @@
             border-color: var(--primary);
             transform: translateY(-6px) scale(1.05);
             box-shadow: 0 12px 32px rgba(168, 85, 247, 0.4);
-            border-radius: 4px 12px 4px 12px;
+            border-radius: 5px 14px 5px 14px;
         }
 
         .deploy-option i {
-            font-size: 1.2rem;
+            font-size: 1.4rem; /* Larger icon */
             color: var(--primary);
             text-shadow: 0 0 20px currentColor;
         }
@@ -672,7 +693,7 @@
 
         .deploy-option span {
             font-weight: 700;
-            font-size: 0.8rem;
+            font-size: 0.9rem; /* Larger text */
         }
 
         .back-link {
@@ -683,10 +704,10 @@
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s ease;
-            padding: var(--space-sm) 0;
+            padding: var(--space-md) 0; /* More padding */
             margin-top: auto;
             flex-shrink: 0;
-            font-size: 0.85rem;
+            font-size: 0.9rem; /* Larger font */
             opacity: 0.8;
         }
 
@@ -696,21 +717,62 @@
             transform: translateX(-2px);
         }
 
+        /* Mobile specific adjustments */
         @media (max-width: 480px) {
             .deployment-options {
                 grid-template-columns: 1fr;
             }
             
             .deploy-container {
-                max-height: 380px;
+                max-height: 500px;
                 padding: var(--space-lg);
+                margin: var(--space-sm);
+            }
+            
+            .deploy-title {
+                font-size: 1.6rem;
+            }
+            
+            .deploy-subtitle {
+                font-size: 0.85rem;
             }
         }
 
-        /* Responsive adjustments */
+        /* Tablet adjustments */
+        @media (min-width: 481px) and (max-width: 768px) {
+            .deploy-container {
+                max-width: 420px;
+                max-height: 550px;
+            }
+        }
+
+        /* Desktop adjustments */
+        @media (min-width: 769px) {
+            .deploy-container {
+                max-width: 500px;
+                max-height: 600px;
+            }
+            
+            .deploy-title {
+                font-size: 2rem;
+            }
+            
+            .deploy-subtitle {
+                font-size: 1rem;
+            }
+        }
+
+        /* Tall screen adjustments */
+        @media (min-height: 800px) {
+            .deploy-container {
+                max-height: 650px;
+            }
+        }
+
+        /* Short screen adjustments */
         @media (max-height: 600px) {
             .deploy-container {
-                max-height: 360px;
+                max-height: 450px;
                 padding: var(--space-md);
             }
             
@@ -739,7 +801,7 @@
         </div>
 
         <div class="deploy-note">
-            <strong>Important:</strong> Make sure you have forked the repository before deploying.
+            <strong>Important:</strong> Make sure you have forked the repository before deploying. Choose your bot and deployment platform below.
         </div>
 
         <form id="deploy-form">
@@ -830,7 +892,7 @@
         particlesJS("particles-js", {
             particles: {
                 number: {
-                    value: 40,
+                    value: 50, /* More particles */
                     density: {
                         enable: true,
                         value_area: 800
@@ -857,7 +919,7 @@
                     }
                 },
                 size: {
-                    value: 3,
+                    value: 4, /* Slightly larger particles */
                     random: true,
                     anim: {
                         enable: true,
@@ -870,12 +932,12 @@
                     enable: true,
                     distance: 150,
                     color: "#A855F7",
-                    opacity: 0.1,
+                    opacity: 0.15, /* Slightly more visible */
                     width: 1
                 },
                 move: {
                     enable: true,
-                    speed: 1,
+                    speed: 1.2, /* Slightly faster */
                     direction: "none",
                     random: true,
                     straight: false,
@@ -903,7 +965,7 @@
                 },
                 modes: {
                     repulse: {
-                        distance: 100,
+                        distance: 120, /* Larger repulse distance */
                         duration: 0.4
                     },
                     push: {
@@ -948,6 +1010,28 @@
                 
                 // Focus on username input
                 this.usernameInput.focus();
+                
+                // Add touch event listeners for mobile
+                this.addTouchSupport();
+            }
+
+            addTouchSupport() {
+                // Prevent zoom on double tap
+                let lastTouchEnd = 0;
+                document.addEventListener('touchend', function(event) {
+                    const now = (new Date()).getTime();
+                    if (now - lastTouchEnd <= 300) {
+                        event.preventDefault();
+                    }
+                    lastTouchEnd = now;
+                }, false);
+                
+                // Prevent pull-to-refresh
+                document.addEventListener('touchmove', function(event) {
+                    if (event.scale !== 1) {
+                        event.preventDefault();
+                    }
+                }, false);
             }
 
             setupBotSelection() {
@@ -957,13 +1041,21 @@
                         option.classList.add('selected');
                         this.selectedBot = option.dataset.bot;
                     });
+                    
+                    // Add touch feedback for mobile
+                    option.addEventListener('touchstart', () => {
+                        option.style.transform = 'scale(0.98)';
+                    });
+                    
+                    option.addEventListener('touchend', () => {
+                        option.style.transform = '';
+                    });
                 });
             }
 
             setupForkButtons() {
                 this.forkButtons.pretty.addEventListener('click', (e) => {
                     e.preventDefault();
-                    const username = this.usernameInput.value.trim();
                     window.open('https://github.com/superstar-zimtk/Pretty-md/fork', '_blank');
                     this.showMessage('Opening GitHub fork page...', 'success');
                 });
@@ -1057,11 +1149,15 @@
                         this.showMessage(`✓ Repository found! "${data.full_name}"`, 'success');
                         setTimeout(() => {
                             this.showDeploymentOptions();
+                            // Scroll to deployment options
+                            this.deploymentOptions.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                         }, 300);
                     } else if (response.status === 404) {
                         this.showMessage('Repository not found. Please fork the repository first.', 'warning');
                         setTimeout(() => {
                             this.showForkActions();
+                            // Scroll to fork actions
+                            this.forkActions.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                         }, 300);
                     } else if (response.status === 403) {
                         this.showMessage('GitHub API rate limit exceeded. Please try again later.', 'error');
@@ -1139,6 +1235,12 @@
                 if (e.key === 'Enter' && e.ctrlKey) {
                     e.preventDefault();
                     deployManager.form.dispatchEvent(new Event('submit'));
+                }
+                
+                // Escape to clear input
+                if (e.key === 'Escape') {
+                    deployManager.usernameInput.value = '';
+                    deployManager.usernameInput.focus();
                 }
             });
             
